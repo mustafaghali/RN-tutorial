@@ -1,18 +1,43 @@
-import React, { Component } from 'react';
-import { AppRegistry, Text, TextInput, View } from 'react-native';
-import Button from './common/Button.js';
-import Touchables from './common/Touchables.js';
 
+import React, { Component } from 'react';
+import {ScrollView, Image, Text } from 'react-native';
+        
 export default class Main extends Component {
-  constructor(props) {
-    super(props);
-  }
-render() {
-  return (
-    <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>   
-       <Button/>
-       <Touchables/>
-    </View>
-  ); 
-}
-}
+    render() {
+              return (
+                <ScrollView>
+                  <Text style={{fontSize:96}}>Scroll me plz</Text>
+                  <Image source={require('../../assets/img/vf-logo-large.png')} /> 
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Text style={{fontSize:96}}>If you like</Text>
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Text style={{fontSize:96}}>Scrolling down</Text>
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Text style={{fontSize:96}}>What's the best</Text>
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Text style={{fontSize:96}}>Framework around?</Text>
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Image source={require('../../assets/img/vf-logo-large.png')} />
+                  <Text style={{fontSize:80}}>React Native</Text>
+                  </ScrollView>
+                  );
+                }
+           }

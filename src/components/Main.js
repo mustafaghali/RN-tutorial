@@ -8,9 +8,9 @@ export default class LotsOfGreetings extends Component {
   render() {
     return (
       <View style={{alignItems: 'center'}}>
-        <GreetingText name='Rexxar' />
-        <GreetingText name='Jaina' />
-        <GreetingText name='Valeera' /> 
+        <GreetingText name='Vodafone' />
+        <GreetingText name='Mustafa' />
+        <GreetingText name='Moh' /> 
       </View>
     );
   }

@@ -1,39 +1,17 @@
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import {View } from 'react-native';
+import GreetingText from './common/Greeting.js'
 
 
 
-class Main extends Component {
+export default class LotsOfGreetings extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to Vodammerce!
-        </Text>
+      <View style={{alignItems: 'center'}}>
+        <GreetingText name='Rexxar' />
+        <GreetingText name='Jaina' />
+        <GreetingText name='Valeera' /> 
       </View>
     );
   }
-}
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#e60000', 
-    },
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-      color: 'white',
-    }
-  });
-  
-
-export default Main;
+};

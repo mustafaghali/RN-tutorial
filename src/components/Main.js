@@ -20,7 +20,7 @@ export default class Main extends Component {
           onRequestClose={() => {
             alert('Modal has been closed.');  
           }}>
-          <View style={{marginTop: 22,width:200,height:200,backgroundColor:'rgba(227,111,158,0.7)',alignItems:'center',justifyContent:'center'}}>   
+          <View style={{marginTop: 22,width:200,height:200,backgroundColor:'rgba(227,111,158,0.7)',alignItems:'center',justifyContent:'center',borderRadius:20}}>   
               <Text>Hello World!</Text> 
  
               <TouchableOpacity

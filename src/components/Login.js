@@ -10,8 +10,10 @@ import {Text,
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../themes/style1';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {updateEmailInput,ResetLoginForm} from '../actions';
+import {connect} from 'react-redux';
 
-export default class Login extends Component {
+class Login extends Component {
      
     constructor() {
         super();
@@ -20,6 +22,10 @@ export default class Login extends Component {
         password:'',
         loading: true
         };
+     }
+
+     componentDidMount(){
+        console.log(this.props.email); 
      }
 
     render(){
@@ -45,7 +51,10 @@ export default class Login extends Component {
                       <TextInput style = {{flex:1,color:'white',fontSize:15,marginLeft:10,textAlign:'center'}}    
                         placeholder = 'Email'
                         underlineColorAndroid = 'white'
-                        placeholderTextColor = 'white'/>   
+                        placeholderTextColor = 'white'
+                        value = {this.props.email}
+                        onChangeText ={ this.props.updateEmailInput}
+                        />   
                   </View>
 
                   <View style = {styles.TextInputContainer}>   
@@ -54,28 +63,34 @@ export default class Login extends Component {
                         placeholder = 'Password'
                         secureTextEntry = {true}
                         underlineColorAndroid = 'white' 
-                        placeholderTextColor = 'white'/>   
+                        placeholderTextColor = 'white'
+                        value = {this.props.password}
+                        />   
                   </View>
                 </View>
                 
                 
                 <TouchableOpacity
-                  style = {{width:Dimensions.get('window').width * 2/3,  
-                  height : Dimensions.get('window').height * 1/10, 
-                  borderColor:'white',
-                  borderWidth:1,
-                  alignItems:'center',
-                  justifyContent:'center', 
-                  borderRadius:30, 
-                  marginTop:30, 
-                }}
+                  style = {
+                      {
+                          width:Dimensions.get('window').width * 2/3,  
+                          height : Dimensions.get('window').height * 1/10, 
+                          borderColor:'white',
+                          borderWidth:1,
+                          alignItems:'center',
+                          justifyContent:'center', 
+                          borderRadius:30, 
+                          marginTop:30, 
+                    }
+                 }
+                 onPress = {this.props.ResetLoginForm}
                 >
-                    <Text style={{color:'white'}}>Login</Text> 
+                    <Text style={{color:'white'}}>RESET Login</Text> 
                 </TouchableOpacity>
                </View>
                <View style = {{flexDirection:'row',justifyContent:'space-between',width:Dimensions.get('window').width -10,marginBottom:10}}> 
                 <TouchableOpacity
-                                onPress = {()=>{}}
+                               
                              >
                             <Text style={{color: 'white',textDecorationLine:'underline'}}>
                               { " Don't have an account ? "}
@@ -110,3 +125,11 @@ const styles = StyleSheet.create(
      }
 }
 )
+
+const mapStateToProps = (state)=>{   
+      const  {email,password,loading} = state.loginForm;
+    return ( {email,password,loading});
+ }
+
+
+ export default connect (mapStateToProps,{updateEmailInput,ResetLoginForm})(Login);

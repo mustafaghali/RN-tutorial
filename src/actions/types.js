@@ -1,0 +1,3 @@
+export const UPDATE_EMAIL_INPUT = 'UPDATE_EMAIL_INPUT';
+export const RESET_LOGIN_FORM = 'RESET_LOGIN_FORM';
+

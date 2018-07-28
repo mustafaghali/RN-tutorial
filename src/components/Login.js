@@ -9,7 +9,6 @@ import {Text,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../themes/style1';
-import TextInputwithIcon from './common/TextInputWithIcon.js'; 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Login extends Component {
@@ -19,7 +18,7 @@ export default class Login extends Component {
         this.state = {
         email:'',
         password:'',
-        isReady: true
+        loading: true
         };
      }
 

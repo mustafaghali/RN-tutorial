@@ -3,8 +3,7 @@ import  {LOGIN_USER,
     LOGIN_PAGE_UPDATE} from './types';
 
 import axios from 'axios';
-
-
+import {Actions} from 'react-native-router-flux';
 
 export const UpdateLoginPage = ({prop, value}) => {  
     return (
@@ -39,7 +38,7 @@ export const loginUser = ({email,password}) =>{
     return (dispatch)=>{
 
         dispatch ({type : LOGIN_USER} );
-    axios.get('https://jsonplaceholder.typicode.com/users')
+    axios.get('https://jsonplaceholder.typicode.com/users') 
     .then((response)=> {
       // handle success
       console.log(response);
@@ -54,6 +53,7 @@ export const loginUser = ({email,password}) =>{
      UpdateLoginPageAsync(dispatch,{prop:'loading',value:false});
       // always executed
     });
+    Actions.Home();
 
 }
 

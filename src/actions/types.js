@@ -1,3 +1,4 @@
 export const RESET_LOGIN_FORM = 'RESET_LOGIN_FORM';
 export const LOGIN_PAGE_UPDATE = 'LOGIN_PAGE_UPDATE';
 export const LOGIN_USER = 'LOGIN_USER';
+export const APP_STATE_UPDATE = 'APP_STATE_UPDATE';

@@ -1,10 +1,5 @@
 export const colors ={
-    main:'#90BD85',
-    second : '#0C6656',
-   // listItemHeader:'#F3F0ED',
-     listItemHeader:'transparent',
-     transparent:'transparent',
-    inputBlueBorder:'#9CC8E1',
+
     facebookBlue : '#3b5998',
     instagramRedLight : '#c32aa3',
     twitterBlue : '#1da1f2',
@@ -15,6 +10,7 @@ export const colors ={
     vimto:'#AC1E0E',
     softWhite:'#F6F9F5',
     RedMistGradient:['#000000','#e74c3c'], 
-    gray:'gray'
+    gray:'gray',
+    vodared:'#e74c3c'
 
 }

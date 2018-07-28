@@ -5,12 +5,13 @@ import {Text,
     View,
     TextInput,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../themes/style1';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {updateEmailInput,ResetLoginForm} from '../actions';
+import {UpdateLoginPage,ResetLoginForm,loginUser} from '../actions';
 import {connect} from 'react-redux';
 
 class Login extends Component {
@@ -18,11 +19,9 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
-        email:'',
-        password:'',
-        loading: true
         };
      }
+
 
      componentDidMount(){
         console.log(this.props.email); 
@@ -53,7 +52,7 @@ class Login extends Component {
                         underlineColorAndroid = 'white'
                         placeholderTextColor = 'white'
                         value = {this.props.email}
-                        onChangeText ={ this.props.updateEmailInput}
+                        onChangeText ={ (text)=> {this.props.UpdateLoginPage({prop:'email',value:text})}}
                         />   
                   </View>
 
@@ -64,13 +63,21 @@ class Login extends Component {
                         secureTextEntry = {true}
                         underlineColorAndroid = 'white' 
                         placeholderTextColor = 'white'
+                        onChangeText ={ (text)=> {this.props.UpdateLoginPage({prop:'password',value:text})}}
                         value = {this.props.password}
                         />   
                   </View>
                 </View>
                 
-                
-                <TouchableOpacity
+            {this.props.loading?  
+            
+            <ActivityIndicator
+              //  animating = {animating}
+               color = '#DADFE0'
+               size = "large"
+             />
+               :
+                <TouchableOpacity  
                   style = {
                       {
                           width:Dimensions.get('window').width * 2/3,  
@@ -83,10 +90,14 @@ class Login extends Component {
                           marginTop:30, 
                     }
                  }
-                 onPress = {this.props.ResetLoginForm}
+                 onPress = {this.props.loginUser}
                 >
-                    <Text style={{color:'white'}}>RESET Login</Text> 
+                    <Text style={{color:'white'}}>Login</Text> 
                 </TouchableOpacity>
+
+                }
+
+
                </View>
                <View style = {{flexDirection:'row',justifyContent:'space-between',width:Dimensions.get('window').width -10,marginBottom:10}}> 
                 <TouchableOpacity
@@ -132,4 +143,4 @@ const mapStateToProps = (state)=>{
  }
 
 
- export default connect (mapStateToProps,{updateEmailInput,ResetLoginForm})(Login);
+ export default connect (mapStateToProps,{UpdateLoginPage,ResetLoginForm,loginUser})(Login);

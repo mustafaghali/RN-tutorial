@@ -1,5 +1,8 @@
-public class ImagePickerModule extends ReactContextBaseJavaModule {
-    private static final int PICK_IMAGE = 1;
+public class ImagePickerModule extends ReactContextBaseJavaModule implements ActivityEventListener {
+    public ImagePickerModule(ReactApplicationContext reactContext) {
+        super(reactContext);
+        reactContext.addActivityEventListener(this);
+    }    private static final int PICK_IMAGE = 1;
 
     private Callback pickerSuccessCallback;
     private Callback pickerCancelCallback;

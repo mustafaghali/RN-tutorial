@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
   Dimensions,
   Text,
-  NativeModules
+  NativeModules,
+  ActivityIndicator
 } from 'react-native';
 import {connect} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import colorCodes from '../themes/mainStyle.js';
 import TextInputwithIcon from './common/TextInputWithIcon.js';
-import {emailChanged,passwordChanged} from '../actions';
+import {emailChanged,passwordChanged, loginPageStateUpdate ,loginUser} from '../actions';
 import {Actions} from 'react-native-router-flux';
 
 class Login extends Component {
@@ -56,7 +57,7 @@ class Login extends Component {
             <TextInputwithIcon 
               testID = {'userEmailInput'}
               textValue = {this.props.email}
-              onTextChanged = {(text)=>{this.props.emailChanged(text)}}
+              onTextChanged = {(text)=>{this.props.loginPageStateUpdate({prop:'email',value:text})}}
               iconName = 'envelope'
               iconColor = 'white'
               placeholder = 'email'
@@ -67,7 +68,7 @@ class Login extends Component {
             <TextInputwithIcon 
               testID = {'userPasswordInput'}
               textValue = {this.props.password}
-              onTextChanged = {(text)=>{this.props.passwordChanged(text)}}
+              onTextChanged = {(text)=>{this.props.loginPageStateUpdate({prop:'password',value:text})}}
               iconName = 'unlock-alt'
               iconColor = 'white' 
               secure = {true}
@@ -77,7 +78,11 @@ class Login extends Component {
 
 
               <View style= {{justifyContent:'center',alignItems:'center'}}>
-              <TouchableOpacity  
+              
+              {this.props.loading?<ActivityIndicator
+                 size='large'/>:
+                 <TouchableOpacity 
+                  
                  style = {{width:Dimensions.get('window').width*2/3,
                  height:70,borderWidth:1,
                  borderColor:'white',
@@ -86,20 +91,27 @@ class Login extends Component {
                  
                 }}
                 onPress = {() =>{
-                //   NativeModules.ImagePicker.openSelectDialog(
-                //   {}, // no config yet 
-                //   (uri) => { console.log(uri) }, 
-                //   (error) => { console.log(error) }
-                // )
-                 NativeModules.ToastModule.show('it works');
-               //  Actions.Home();
-                 Actions.push('HomeTab');
+                  this.props.loginUser();
+              //   //   NativeModules.ImagePicker.openSelectDialog(
+              //   //   {}, // no config yet 
+              //   //   (uri) => { console.log(uri) }, 
+              //   //   (error) => { console.log(error) }
+              //   // )
+              //    NativeModules.ToastModule.show('it works');
+              //  //  Actions.Home();
+              //    Actions.push('HomeTab');
               }}
               >
 
               <Text style = {{color:'white',fontSize:25}}> Login </Text>
 
                 </TouchableOpacity>
+                 
+                 
+                 }
+              
+
+
 
                   <View style = {{flexDirection:'row',justifyContent:'space-between',width:Dimensions.get('window').width -10,marginBottom:10}}> 
                 <TouchableOpacity
@@ -125,10 +137,10 @@ class Login extends Component {
 
 
 const mapStateToProps = (state) =>{
-    const {email,password}  = state.LoginPageState;
+    const {email,password,loading}  = state.LoginPageState;
 
-    return {email,password};
+    return {email,password,loading};
 } 
 
 
-export default connect(mapStateToProps,{emailChanged,passwordChanged})(Login);
+export default connect(mapStateToProps,{emailChanged,passwordChanged,loginPageStateUpdate,loginUser})(Login);

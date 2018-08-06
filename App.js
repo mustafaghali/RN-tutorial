@@ -12,13 +12,14 @@ import Login from './src/components/Login.js';
 import Home from './src/components/Home';
 import About from './src/components/About';
 import Router from './src/router';
-import {createStore} from 'redux';
+import {createStore,applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import reducers from './src/reducers/';   
+import ReduxThunk from 'redux-thunk';
 
 export default class App extends Component {
 
-  store = createStore(reducers);
+  store = createStore(reducers,{},applyMiddleware(ReduxThunk));
 
   render() {
     return (

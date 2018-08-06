@@ -2,7 +2,32 @@ public class ImagePickerModule extends ReactContextBaseJavaModule implements Act
     public ImagePickerModule(ReactApplicationContext reactContext) {
         super(reactContext);
         reactContext.addActivityEventListener(this);
-    }    private static final int PICK_IMAGE = 1;
+    }  
+    
+    
+    @Override
+public void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
+    if (pickerSuccessCallback != null) {
+        if (resultCode == Activity.RESULT_CANCELED) {
+            pickerCancelCallback.invoke("ImagePicker was cancelled");
+        } else if (resultCode == Activity.RESULT_OK) {
+            Uri uri = intent.getData();
+
+            if (uri == null) {
+                pickerCancelCallback.invoke("No image data found");
+            } else {
+                try {
+                    pickerSuccessCallback.invoke(uri);
+                } catch (Exception e) {
+                    pickerCancelCallback.invoke("No image data found");
+                }
+            }
+        }
+    }
+}
+    
+    
+    private static final int PICK_IMAGE = 1;
 
     private Callback pickerSuccessCallback;
     private Callback pickerCancelCallback;

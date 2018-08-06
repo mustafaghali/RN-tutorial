@@ -20,9 +20,11 @@ export default textwithIcon = (props) => {
                 style={{
                     width: Dimensions.get('window').width * 2 / 3,
                     height: 50,
-                    color: 'white',
+                    color: 'white', 
                     textAlign: 'center'
+                   
                 }}
+                secureTextEntry = {props.secure}
                 placeholderTextColor='white'
                 placeholder={props.placeholder}
             />

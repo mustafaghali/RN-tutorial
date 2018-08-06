@@ -9,12 +9,14 @@ import {
   Text,
   NativeModules
 } from 'react-native';
+import {connect} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
-import mainStyle from '../themes/mainStyle.js';
+import colorCodes from '../themes/mainStyle.js';
 import TextInputwithIcon from './common/TextInputWithIcon.js';
+import {emailChanged,passwordChanged} from '../actions';
+import {Actions} from 'react-native-router-flux';
 
-
-export default class Login extends Component {
+class Login extends Component {
 
   constructor(props)
   {
@@ -27,15 +29,8 @@ export default class Login extends Component {
     }
   }
 
-   changeEmail  (v){
-    //this.setState({testInt: v * 2});
-    return (v * 2);
- } 
 
 
- changeValue (v){
-  this.setState({testInt: v});
-} 
    onEmailChange =  (text)=>{
      this.setState({emailValue:text});
   } 
@@ -47,7 +42,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <LinearGradient colors = {mainStyle.vodared_G}style = {{flex:1,justifyContent:'space-between'}}> 
+      <LinearGradient colors = {colorCodes.vodared_G}style = {{flex:1,justifyContent:'space-between'}}> 
           <View style= {{alignItems:'center',justifyContent:'center',marginTop:20}}>
             <Image 
             resizeMode = 'contain'
@@ -60,8 +55,8 @@ export default class Login extends Component {
             {/* <View testID = {'inputs'}> */}
             <TextInputwithIcon 
               testID = {'userEmailInput'}
-              textValue = {this.state.emailValue}
-              onTextChanged = {this.onEmailChange.bind(this)}
+              textValue = {this.props.email}
+              onTextChanged = {(text)=>{this.props.emailChanged(text)}}
               iconName = 'envelope'
               iconColor = 'white'
               placeholder = 'email'
@@ -71,10 +66,11 @@ export default class Login extends Component {
 
             <TextInputwithIcon 
               testID = {'userPasswordInput'}
-              textValue = {this.state.passwordValue}
-              onTextChanged = {this.onPasswordChange.bind(this)}
+              textValue = {this.props.password}
+              onTextChanged = {(text)=>{this.props.passwordChanged(text)}}
               iconName = 'unlock-alt'
               iconColor = 'white' 
+              secure = {true}
               placeholder = 'password'
             />
               {/* </View> */}
@@ -95,7 +91,9 @@ export default class Login extends Component {
                 //   (uri) => { console.log(uri) }, 
                 //   (error) => { console.log(error) }
                 // )
-                NativeModules.ToastModule.show('it works');
+                 NativeModules.ToastModule.show('it works');
+               //  Actions.Home();
+                 Actions.push('HomeTab');
               }}
               >
 
@@ -124,3 +122,13 @@ export default class Login extends Component {
     );
   }
 }
+
+
+const mapStateToProps = (state) =>{
+    const {email,password}  = state.LoginPageState;
+
+    return {email,password};
+} 
+
+
+export default connect(mapStateToProps,{emailChanged,passwordChanged})(Login);
